@@ -5,6 +5,8 @@ import java.io.FileInputStream
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -25,7 +27,7 @@ android {
             }
             ndk {
                 // 'x86_64' 'arm64-v8a' "armeabi-v7a",
-                abiFilters += "arm64-v8a"
+                abiFilters += setOf("arm64-v8a", "x86")
             }
         }
     }
@@ -39,11 +41,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     externalNativeBuild {
         cmake {
@@ -57,7 +59,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true
+        // viewBinding = true
         compose = true
         // to generate BuildConfig.java file
         buildConfig = true
@@ -91,6 +93,11 @@ fun getToken(): String {
     return props.getProperty("TMDB_TOKEN", "")
 }
 
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -111,6 +118,10 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.compose.material3:material3-window-size-class")
+
+    // hilt
+    implementation("com.google.dagger:hilt-android:2.46.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.46.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
