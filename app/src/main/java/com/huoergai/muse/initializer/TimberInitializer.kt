@@ -9,6 +9,7 @@ import timber.log.Timber
  * D&T: 2023-05-15 11:20
  * DES:
  */
+@Suppress("unused")
 class TimberInitializer : Initializer<Unit> {
     override fun create(context: Context) {
         if (BuildConfig.DEBUG) {
