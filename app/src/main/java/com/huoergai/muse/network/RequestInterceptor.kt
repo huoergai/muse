@@ -13,7 +13,9 @@ internal class RequestInterceptor : Interceptor {
         val newReq = chain.request()
             .newBuilder()
             .addHeader("Authorization", "Bearer ${BuildConfig.TMDB_TOKEN}")
+            .addHeader("accept", "application/json")
             .build()
+
         return chain.proceed(newReq)
     }
 }

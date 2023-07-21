@@ -27,7 +27,7 @@ android {
             }
             ndk {
                 // 'x86_64' 'arm64-v8a' "armeabi-v7a",
-                abiFilters += setOf("arm64-v8a", "x86")
+                abiFilters += listOf("arm64-v8a", "x86")
             }
         }
     }
@@ -43,6 +43,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        // isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -74,22 +75,24 @@ android {
 
 androidComponents {
     onVariants {
-        it.buildConfigFields.apply {
-            put("TMDB_KEY", BuildConfigField("String", "\"${getKey()}\"", "api_key"))
-            put("TMDB_TOKEN", BuildConfigField("String", "\"${getToken()}\"", "api_token"))
+        if (it.buildType == "debug") {
+            it.buildConfigFields.apply {
+                put("TMDB_KEY", BuildConfigField("String", "\"${getKey()}\"", "api_key"))
+                put("TMDB_TOKEN", BuildConfigField("String", "\"${getToken()}\"", "api_token"))
+            }
         }
     }
 }
 
 fun getKey(): String {
     val props = Properties()
-    props.load(FileInputStream(File("extra.properties")))
+    props.load(FileInputStream(File("local.properties")))
     return props.getProperty("TMDB_KEY", "")
 }
 
 fun getToken(): String {
     val props = Properties()
-    props.load(FileInputStream(File("extra.properties")))
+    props.load(FileInputStream(File("local.properties")))
     return props.getProperty("TMDB_TOKEN", "")
 }
 
@@ -104,11 +107,13 @@ dependencies {
     implementation("com.google.android.material:material:1.8.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
+    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 
-    val composeBom = platform("androidx.compose:compose-bom:2023.04.01")
+    val composeBom = platform("androidx.compose:compose-bom:2023.05.01")
     implementation(composeBom)
     androidTestImplementation(composeBom)
 

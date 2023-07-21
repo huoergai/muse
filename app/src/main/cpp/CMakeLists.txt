@@ -11,6 +11,9 @@ cmake_minimum_required(VERSION 3.22.1)
 # build script scope).
 project("muse")
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Og")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Og")
+
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
@@ -27,6 +30,10 @@ project("muse")
 add_library(${CMAKE_PROJECT_NAME} SHARED
         # List C/C++ source files with relative paths to this CMakeLists.txt.
         tmdb.cpp)
+
+add_library(hello SHARED
+        # List C/C++ source files with relative paths to this CMakeLists.txt.
+        hello.cpp)
 
 # Specifies libraries CMake should link to your target library. You
 # can link libraries from various origins, such as libraries defined in this
