@@ -1,20 +1,14 @@
 package com.huoergai.muse.ui
 
 import android.os.Bundle
-import android.transition.Scene
-import android.transition.TransitionManager
-import android.view.View
 import androidx.activity.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseActivity
 import com.huoergai.muse.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
@@ -30,50 +24,24 @@ class MainActivity : BaseActivity() {
 
         initView()
 
+        initData()
+
         initEvent()
     }
 
-    private fun initEvent() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    mainVM.isLoading.collect { isLoading ->
-                        if (isLoading) {
-                            binding.progressBar.show()
-                        } else {
-                            binding.progressBar.hide()
-                        }
-                    }
-                }
-
-                mainVM.loadData()
-            }
-        }
+    private fun initView() {
+        val navView: BottomNavigationView = binding.bnv
+        val navController = findNavController(R.id.fcv)
+        // val appBarConfig = AppBarConfiguration(setOf(R.id.nav_movie, R.id.nav_tv, R.id.nav_me))
+        // setupActionBarWithNavController(navController, appBarConfig)
+        navView.setupWithNavController(navController)
     }
 
-    private fun initView() {
-        val sceneRoot = binding.flRoot
-        val sceneMovie = Scene(sceneRoot, findViewById<View>(R.id.container))
-        val sceneTv = Scene.getSceneForLayout(sceneRoot, R.layout.scene_tv, this)
-        val sceneMe = Scene.getSceneForLayout(sceneRoot, R.layout.scene_me, this)
+    private fun initData() {
+        mainVM.loadData()
+    }
 
-        binding.bnv.setOnItemSelectedListener {
-            when (it.order) {
-                0 -> TransitionManager.go(sceneMovie)
-                1 -> TransitionManager.go(sceneTv)
-                2 -> TransitionManager.go(sceneMe)
-                else -> {}
-            }
-            true
-        }
-
-        val movieRv = binding.flRoot.findViewById<RecyclerView>(R.id.rv_movie)
-        val movieRvAdapter = RvAdapter(mainVM.movieList.value)
-        movieRv.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = movieRvAdapter
-        }
-
+    private fun initEvent() {
     }
 
     companion object

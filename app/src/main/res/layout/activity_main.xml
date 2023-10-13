@@ -4,19 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:visibility="gone"
-        app:hideAnimationBehavior="outward"
-        app:layout_constraintBottom_toTopOf="@id/bnv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:showAnimationBehavior="outward" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv"
         style="@style/Widget.MaterialComponents.BottomNavigationView"
@@ -25,16 +12,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/main_menu" />
 
-    <FrameLayout
-        android:id="@+id/fl_root"
+    <fragment
+        android:id="@+id/fcv"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/bnv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <include layout="@layout/scene_movie" />
-
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/main_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
