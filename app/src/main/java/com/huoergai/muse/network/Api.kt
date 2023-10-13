@@ -6,8 +6,8 @@ package com.huoergai.muse.network
  */
 
 const val TMDB_URL = "https://api.themoviedb.org"
-const val TMDB_V3 = "${TMDB_URL}/3"
-const val TMDB_V4 = "${TMDB_URL}/4"
+const val TMDB_V3 = "${TMDB_URL}/3/"
+const val TMDB_V4 = "${TMDB_URL}/4/"
 
 const val accountID = 1231
 

@@ -1,8 +1,8 @@
 package com.huoergai.muse.initializer
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import androidx.startup.Initializer
-import com.huoergai.muse.BuildConfig
 import timber.log.Timber
 
 /**
@@ -12,7 +12,8 @@ import timber.log.Timber
 @Suppress("unused")
 class TimberInitializer : Initializer<Unit> {
     override fun create(context: Context) {
-        if (BuildConfig.DEBUG) {
+        val debugFlag = context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE
+        if (debugFlag != 0) {
             Timber.plant(Timber.DebugTree())
             Timber.d("Timber is initialized.")
         }

@@ -1,10 +1,10 @@
-package com.huoergai.muse
+package com.huoergai.muse.model
 
 /**
  * D&T: 2023-07-20 17:32
  * DES:
  */
-enum class MovieList(val path: String) {
+enum class MovieListType(val type: String) {
     NowPlaying("now_playing"),
     Popular("popular"),
     TopRated("top_rated"),

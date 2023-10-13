@@ -13,16 +13,15 @@ plugins {
 }
 
 android {
+    compileSdk = 34
+    ndkVersion = "26.1.10909125"
     namespace = "com.huoergai.muse"
-    compileSdk = 33
-
     defaultConfig {
         applicationId = "com.huoergai.muse"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         archivesName = "hello-$versionCode-$versionName-${
             LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss"))
         }"
@@ -33,27 +32,32 @@ android {
                 cppFlags += "-std=c++17"
             }
             ndk {
-                // 'x86_64' 'arm64-v8a' "armeabi-v7a",
-                abiFilters += listOf("arm64-v8a", "x86")
+                // "x86" 'x86_64' 'arm64-v8a' "armeabi-v7a",
+                //noinspection ChromeOsAbiSupport
+                abiFilters += listOf("arm64-v8a", "x86_64")
             }
         }
     }
 
     buildTypes {
-        release {
+        debug {
+            isShrinkResources = false
             isMinifyEnabled = false
+        }
+        release {
+            isShrinkResources = true
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-        // isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "11"
     }
     externalNativeBuild {
         cmake {
@@ -62,13 +66,8 @@ android {
         }
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.6"
-    }
-
     buildFeatures {
-        // viewBinding = true
-        compose = true
+        viewBinding = true
         // to generate BuildConfig.java file
         buildConfig = true
     }
@@ -76,6 +75,9 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+        jniLibs {
+            useLegacyPackaging = true
         }
     }
 }
@@ -103,39 +105,35 @@ fun getToken(): String {
     return props.getProperty("TMDB_TOKEN", "")
 }
 
-// Allow references to generated code
+// hilt: Allow references to generated code
 kapt {
     correctErrorTypes = true
 }
 
 dependencies {
     implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.activity:activity-ktx:1.8.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
+    debugImplementation("androidx.fragment:fragment-testing:1.6.1")
+
+    // lifecycle
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
+    // ui
+    val appcompatVersion = "1.6.1"
+    implementation("androidx.appcompat:appcompat:$appcompatVersion")
+    implementation("androidx.appcompat:appcompat-resources:$appcompatVersion")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
-
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    implementation("androidx.activity:activity-compose:1.7.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-
-    val composeBom = platform("androidx.compose:compose-bom:2023.06.01")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
-
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    // Override Material Design 3 library version with a pre-release version
-    implementation("androidx.compose.material3:material3:1.1.1")
-    // implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material-icons-extended")
-    implementation("androidx.compose.material3:material3-window-size-class")
+    // coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     // hilt
-    implementation("com.google.dagger:hilt-android:2.46.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.46.1")
+    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+    implementation("com.google.dagger:hilt-android:2.48.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.48.1")
 
     // log
     implementation("com.jakewharton.timber:timber:5.0.1")
@@ -147,16 +145,16 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.11.0"))
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.10.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver")
 
+    // glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    // test
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/movie"
+        android:icon="@drawable/baseline_movie_24"
+        android:orderInCategory="0"
+        android:title="@string/movie" />
+
+    <item
+        android:id="@+id/tv"
+        android:icon="@drawable/baseline_live_tv_24"
+        android:orderInCategory="1"
+        android:title="@string/tv" />
+
+    <item
+        android:id="@+id/me"
+        android:icon="@drawable/baseline_person_24"
+        android:orderInCategory="2"
+        android:title="@string/me" />
+</menu>

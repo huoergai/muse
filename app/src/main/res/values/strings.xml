@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Muse</string>
+
+    <string name="movie">movie</string>
+    <string name="tv">tv</string>
+    <string name="me">me</string>
+
+    <string name="empty_note">empty</string>
+
 </resources>
