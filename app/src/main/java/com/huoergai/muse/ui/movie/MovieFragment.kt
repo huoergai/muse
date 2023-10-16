@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import com.huoergai.muse.base.BaseFragment
 import com.huoergai.muse.databinding.FragmentMovieBinding
 import com.huoergai.muse.ui.MainViewModel
+import com.huoergai.muse.ui.RvAdapter
+import kotlinx.coroutines.launch
 
 /**
  * D&T: 2023-10-13 21:28
@@ -28,6 +32,25 @@ class MovieFragment : BaseFragment() {
         val root: View = binding.root
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val rvAdapter = RvAdapter()
+
+        mainVM.loadMovies()
+
+        binding.rvMovies.apply {
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = rvAdapter
+        }
+
+        lifecycleScope.launch {
+            mainVM.movieList.collect {
+                rvAdapter.addData(it)
+            }
+        }
     }
 
     override fun onDestroy() {

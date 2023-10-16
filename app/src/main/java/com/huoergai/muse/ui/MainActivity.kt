@@ -22,23 +22,19 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initView()
-
         initData()
-
+        initView()
         initEvent()
     }
 
     private fun initView() {
         val navView: BottomNavigationView = binding.bnv
         val navController = findNavController(R.id.fcv)
-        // val appBarConfig = AppBarConfiguration(setOf(R.id.nav_movie, R.id.nav_tv, R.id.nav_me))
-        // setupActionBarWithNavController(navController, appBarConfig)
         navView.setupWithNavController(navController)
     }
 
     private fun initData() {
-        mainVM.loadData()
+        mainVM.loadConfig()
     }
 
     private fun initEvent() {

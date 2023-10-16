@@ -10,7 +10,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import kotlinx.coroutines.Dispatchers
 
 /**
  * D&T: 2023-10-12 17:10
@@ -32,7 +31,7 @@ object RepositoryModule {
 
     @Provides
     fun provideTvRepo(tvService: TvService): TvRepo {
-        return TvRepo(tvService, Dispatchers.IO)
+        return TvRepo(tvService)
     }
 
 }

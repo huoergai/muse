@@ -17,10 +17,23 @@ import com.huoergai.muse.model.entity.Movie
  * D&T: 2023-10-12 20:04
  * DES:
  */
-class RvAdapter(private val movies: List<Movie> = emptyList()) :
-    BaseRecyclerViewAdapter<MovieRvHolder>() {
+class RvAdapter : BaseRecyclerViewAdapter<MovieRvHolder>() {
+
+    private val movies: MutableList<Movie> = mutableListOf()
+    fun setData(list: List<Movie>) {
+        movies.clear()
+        movies.addAll(list)
+        notifyDataSetChanged()
+    }
+
+    fun addData(list: List<Movie>) {
+        val start = movies.size
+        movies.addAll(list)
+        notifyItemRangeChanged(start, list.size)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieRvHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
         return MovieRvHolder(view)
     }
 
@@ -39,8 +52,9 @@ class MovieRvHolder(itemView: View) : BaseViewHolder(itemView) {
 
     fun bind(movie: Movie) {
         mtvTitle.text = movie.title
-        ratingBar.rating = movie.vote_average.toFloat()
-        Glide.with(itemView.context)
+        ratingBar.rating = movie.vote_average / 2f
+
+        Glide.with(ivPoster.context)
             .load(GlobalDataStore.buildImageUrl(movie.poster_path))
             .into(ivPoster)
     }

@@ -1,25 +1,16 @@
 package com.huoergai.muse.repo
 
-import com.huoergai.muse.model.entity.Tv
+import com.huoergai.muse.model.TvListType
+import com.huoergai.muse.model.network.TvResponse
+import com.huoergai.muse.network.dola.ApiResponse
 import com.huoergai.muse.network.service.TvService
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.withContext
 
 /**
  * D&T: 2023-10-12 10:40
  * DES:
  */
-class TvRepo(
-    private val tvService: TvService,
-    private val dispatcher: CoroutineDispatcher
-) : Repository {
+class TvRepo(private val tvService: TvService) : Repository {
 
-    suspend fun loadTvs(): List<Tv> {
-        val tvs: List<Tv> = emptyList()
-        withContext(dispatcher) {
-            tvService.getTVList()
-        }
-        return tvs
-    }
+    suspend fun loadTvs(type: TvListType): ApiResponse<TvResponse> = tvService.getTVList(type.type)
 
 }
