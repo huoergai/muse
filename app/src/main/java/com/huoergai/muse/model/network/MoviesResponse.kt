@@ -2,7 +2,7 @@ package com.huoergai.muse.model.network
 
 import com.huoergai.muse.model.entity.Movie
 
-data class MovieListResponse(
+data class MoviesResponse(
     val dates: DateRange?,
     val page: Int,
     val results: List<Movie>,

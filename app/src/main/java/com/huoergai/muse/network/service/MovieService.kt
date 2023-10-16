@@ -1,6 +1,7 @@
 package com.huoergai.muse.network.service
 
-import com.huoergai.muse.model.network.MovieListResponse
+import com.huoergai.muse.model.network.MoviesResponse
+import com.huoergai.muse.network.dola.ApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -19,6 +20,6 @@ interface MovieService {
         @Path("list_type") listType: String,
         @Query("page") page: Int = 1,
         @Query("language") lang: String = "zh-CN"
-    ): MovieListResponse
+    ): ApiResponse<MoviesResponse>
 
 }

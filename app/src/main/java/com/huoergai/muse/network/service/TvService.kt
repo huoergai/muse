@@ -1,5 +1,6 @@
 package com.huoergai.muse.network.service
 
+import com.huoergai.muse.network.dola.ApiResponse
 import retrofit2.http.GET
 
 /**
@@ -8,5 +9,5 @@ import retrofit2.http.GET
  */
 interface TvService {
     @GET("/")
-    suspend fun getTVList(): List<String>
+    suspend fun getTVList(): ApiResponse<List<String>>
 }

@@ -1,6 +1,7 @@
 package com.huoergai.muse.network.service
 
 import com.huoergai.muse.model.entity.Configuration
+import com.huoergai.muse.network.dola.ApiResponse
 import retrofit2.http.GET
 
 /**
@@ -9,6 +10,6 @@ import retrofit2.http.GET
  */
 interface ConfigService {
     @GET("configuration")
-    suspend fun loadConfiguration(): Configuration
+    suspend fun loadConfiguration(): ApiResponse<Configuration>
 
 }

@@ -22,12 +22,12 @@ object RepositoryModule {
 
     @Provides
     fun provideConfigRepo(configService: ConfigService): ConfigRepo {
-        return ConfigRepo(configService, Dispatchers.IO)
+        return ConfigRepo(configService)
     }
 
     @Provides
     fun provideMovieRepo(movieService: MovieService): MovieRepo {
-        return MovieRepo(movieService, Dispatchers.IO)
+        return MovieRepo(movieService)
     }
 
     @Provides

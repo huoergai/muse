@@ -2,6 +2,7 @@ package com.huoergai.muse.di
 
 import com.huoergai.muse.network.AuthInterceptor
 import com.huoergai.muse.network.TMDB_V3
+import com.huoergai.muse.network.dola.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,6 +35,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .baseUrl(TMDB_V3)
             .client(okHttpClient)
+            .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
