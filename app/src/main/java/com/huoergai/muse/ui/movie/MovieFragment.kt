@@ -30,19 +30,24 @@ class MovieFragment : BaseFragment() {
     ): View {
         _binding = FragmentMovieBinding.inflate(layoutInflater, container, false)
         val root: View = binding.root
-
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val rvAdapter = RvAdapter()
+        val gridLayoutMgr = GridLayoutManager(context, 2)
+        val rvAdapter = RvAdapter().apply {
+            setItemClickListener {
+                val pos = gridLayoutMgr.getPosition(it)
+                val movie = this.getData(pos)
+                MovieDetailActivity.start(requireActivity(), it, movie)
+            }
+        }
 
         mainVM.loadMovies()
 
         binding.rvMovies.apply {
-            layoutManager = GridLayoutManager(context, 2)
+            layoutManager = gridLayoutMgr
             adapter = rvAdapter
         }
 

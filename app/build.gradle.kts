@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
@@ -18,11 +19,11 @@ android {
     namespace = "com.huoergai.muse"
     defaultConfig {
         applicationId = "com.huoergai.muse"
-        minSdk = 26
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        archivesName = "hello-$versionCode-$versionName-${
+        archivesName = "Muse-$versionCode-$versionName-${
             LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss"))
         }"
 

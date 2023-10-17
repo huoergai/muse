@@ -25,6 +25,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.movie.MovieDetailActivity" />
+
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="com.huoergai.muse.androidx-startup"

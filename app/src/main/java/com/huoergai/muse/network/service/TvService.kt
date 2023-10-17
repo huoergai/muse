@@ -15,6 +15,6 @@ interface TvService {
     suspend fun getTVList(
         @Path("tv_type") tvType: String,
         @Query("page") page: Int = 1,
-        @Query("language") lang: String = "zh-CN"
+        @Query("language") lang: String = "en-US"
     ): ApiResponse<TvResponse>
 }

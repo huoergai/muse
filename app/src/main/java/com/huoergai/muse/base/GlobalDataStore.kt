@@ -1,7 +1,6 @@
 package com.huoergai.muse.base
 
 import com.huoergai.muse.model.entity.Configuration
-import timber.log.Timber
 
 /**
  * D&T: 2023-10-12 21:51
@@ -14,7 +13,9 @@ object GlobalDataStore {
         config: Configuration = Configuration.defaultConfig
     ): String {
         val posterSizes = config.images.poster_sizes
-        val posterSize = if (posterSizes.contains("w342")) {
+        val posterSize = /*if (posterSizes.contains("w185")) {
+            "w185"
+        } else*/ if (posterSizes.contains("w342")) {
             "w342"
         } else if (posterSizes.contains("w500")) {
             "w500"
@@ -23,7 +24,7 @@ object GlobalDataStore {
         }
 
         val url = "${config.images.base_url}${posterSize}${posterPath}"
-        Timber.tag("GlobalDataStore").i(url)
+        // Timber.tag("GlobalDataStore").i(url)
 
         return url
     }

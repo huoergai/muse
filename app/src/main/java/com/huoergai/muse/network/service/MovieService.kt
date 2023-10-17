@@ -14,12 +14,13 @@ interface MovieService {
 
     /**
      * list_type: now_playing/popular/top_rated/upcoming
+     *  en-US zh-CN
      */
     @GET("movie/{list_type}")
     suspend fun loadMovies(
         @Path("list_type") listType: String,
         @Query("page") page: Int = 1,
-        @Query("language") lang: String = "zh-CN"
+        @Query("language") lang: String = "en-US"
     ): ApiResponse<MoviesResponse>
 
 }

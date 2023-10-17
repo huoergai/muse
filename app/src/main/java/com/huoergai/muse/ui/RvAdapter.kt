@@ -20,6 +20,12 @@ import com.huoergai.muse.model.entity.Movie
 class RvAdapter : BaseRecyclerViewAdapter<MovieRvHolder>() {
 
     private val movies: MutableList<Movie> = mutableListOf()
+    private var itemClickListener: View.OnClickListener? = null
+
+    fun setItemClickListener(listener: View.OnClickListener) {
+        this.itemClickListener = listener
+    }
+
     fun setData(list: List<Movie>) {
         movies.clear()
         movies.addAll(list)
@@ -32,8 +38,13 @@ class RvAdapter : BaseRecyclerViewAdapter<MovieRvHolder>() {
         notifyItemRangeChanged(start, list.size)
     }
 
+    fun getData(pos: Int): Movie {
+        return movies[pos]
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieRvHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
+        view.setOnClickListener(itemClickListener)
         return MovieRvHolder(view)
     }
 
