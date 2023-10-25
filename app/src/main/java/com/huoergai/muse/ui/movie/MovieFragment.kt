@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseFragment
 import com.huoergai.muse.databinding.FragmentMovieBinding
 import com.huoergai.muse.ui.MainViewModel
@@ -22,6 +23,12 @@ class MovieFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     private val mainVM: MainViewModel by activityViewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        mainVM.loadMovies()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,8 +51,6 @@ class MovieFragment : BaseFragment() {
             }
         }
 
-        mainVM.loadMovies()
-
         binding.rvMovies.apply {
             layoutManager = gridLayoutMgr
             adapter = rvAdapter
@@ -53,7 +58,15 @@ class MovieFragment : BaseFragment() {
 
         lifecycleScope.launch {
             mainVM.movieList.collect {
-                rvAdapter.addData(it)
+                if (it.isEmpty()) {
+                    binding.mtvLabel.apply {
+                        text = getString(R.string.empty)
+                        visibility = View.VISIBLE
+                    }
+                } else {
+                    binding.mtvLabel.visibility = View.INVISIBLE
+                    rvAdapter.addData(it)
+                }
             }
         }
     }

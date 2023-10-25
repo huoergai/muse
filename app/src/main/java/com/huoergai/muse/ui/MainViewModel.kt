@@ -73,7 +73,7 @@ class MainViewModel @Inject constructor(
             _isLoading.value = true
             tvRepo.loadTvs(TvListType.AIRING_TODAY).onSuccess {
                 val movies = data.results
-                Timber.tag("MainViewModel").d("movies ${movies.size}")
+                Timber.tag("MainViewModel").d("TVs ${movies.size}")
                 _tvList.value = movies
             }
 

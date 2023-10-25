@@ -16,6 +16,6 @@ data class Tv(
     val overview: String,
     val popularity: Double,
     val poster_path: String,
-    val vote_average: Double,
+    val vote_average: Float,
     val vote_count: Int
 )
