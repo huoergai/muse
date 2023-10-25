@@ -35,7 +35,7 @@ android {
             ndk {
                 // "x86" 'x86_64' 'arm64-v8a' "armeabi-v7a",
                 //noinspection ChromeOsAbiSupport
-                abiFilters += listOf("arm64-v8a", "x86_64")
+                abiFilters += listOf("arm64-v8a")
             }
         }
     }
@@ -130,6 +130,11 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
 
+    implementation("androidx.palette:palette-ktx:1.0.0")
+
+    // expandable TextView
+    implementation("com.ms-square:expandableTextView:0.1.4")
+
     // coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
@@ -144,6 +149,9 @@ dependencies {
     // startup
     implementation("androidx.startup:startup-runtime:1.1.1")
 
+    // coil
+    implementation("io.coil-kt:coil:2.4.0")
+
     // network
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -152,9 +160,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
     testImplementation("com.squareup.okhttp3:mockwebserver")
-
-    // glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     // test
     testImplementation("junit:junit:4.13.2")

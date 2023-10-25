@@ -14,6 +14,9 @@ const val accountID = 1231
 const val image_base_url = "http://image.tmdb.org/t/p/"
 const val image_secure_base_url = "https://image.tmdb.org/t/p/"
 
+const val YOUTUBE_VIDEO_URL = "https://www.youtube.com/watch?v="
+const val YOUTUBE_THUMBNAIL_URL = "https://img.youtube.com/vi/"
+
 // image url = base_url + file_size + file_path
 // http://image.tmdb.org/t/p/w780/jdad3Q0FWNjSmArwWUkD3s2M02W.jpg
 

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.huoergai.muse.base.BaseFragment
 import com.huoergai.muse.databinding.FragmentMovieBinding
 import com.huoergai.muse.ui.MainViewModel
-import com.huoergai.muse.ui.RvAdapter
+import com.huoergai.muse.ui.view.adapter.MovieRvAdapter
 import kotlinx.coroutines.launch
 
 /**
@@ -36,7 +36,7 @@ class MovieFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val gridLayoutMgr = GridLayoutManager(context, 2)
-        val rvAdapter = RvAdapter().apply {
+        val rvAdapter = MovieRvAdapter().apply {
             setItemClickListener {
                 val pos = gridLayoutMgr.getPosition(it)
                 val movie = this.getData(pos)

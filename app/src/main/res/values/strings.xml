@@ -7,4 +7,9 @@
 
     <string name="empty_note">empty</string>
 
+    <string name="release_date_holder">Release Date: %1$s</string>
+    <string name="trailers">Trailers</string>
+    <string name="summary">Summary</string>
+    <string name="reviews">Reviews</string>
+
 </resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/siv_avatar"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:padding="2dp"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_avatar"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/circle_bg"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:lines="1"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/siv_avatar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/rating_bar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:rating="1"
+        app:layout_constraintStart_toStartOf="@id/mtv_name"
+        app:layout_constraintTop_toBottomOf="@id/mtv_name" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/siv_avatar"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.ms.square.android.expandabletextview.ExpandableTextView
+        android:id="@+id/etv_review"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:animAlphaStart="1"
+        app:animDuration="200"
+        app:collapseDrawable="@drawable/baseline_keyboard_arrow_up_24"
+        app:expandDrawable="@drawable/outline_keyboard_arrow_down_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/mtv_name"
+        app:layout_constraintTop_toBottomOf="@id/siv_avatar"
+        app:maxCollapsedLines="3">
+
+        <TextView
+            android:id="@id/expandable_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:lineSpacingMultiplier="1.2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@id/expand_collapse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="6dp" />
+
+    </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
