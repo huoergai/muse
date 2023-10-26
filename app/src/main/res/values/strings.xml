@@ -10,5 +10,6 @@
     <string name="summary">Summary</string>
     <string name="reviews">Reviews</string>
     <string name="empty">empty</string>
+    <string name="first_air_date">First Air Date: %1$s</string>
 
 </resources>

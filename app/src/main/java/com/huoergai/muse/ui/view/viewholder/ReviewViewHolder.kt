@@ -37,7 +37,7 @@ class ReviewViewHolder(itemView: View) : BaseViewHolder(itemView) {
             }
         } else {
             mtvAvatar.visibility = View.INVISIBLE
-            sivAvatar.load(Cook.buildImageUrl(avatarPath))
+            sivAvatar.load(Cook.buildPosterUrl(avatarPath))
         }
 
     }

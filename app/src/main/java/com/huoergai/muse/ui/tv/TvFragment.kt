@@ -44,7 +44,15 @@ class TvFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val tvAdapter = TvRvAdapter()
+        val layoutMgr = LinearLayoutManager(context)
+        val tvAdapter = TvRvAdapter().apply {
+            setItemClickListener {
+                val pos = layoutMgr.getPosition(it)
+                val tv = this.getData(pos)
+                TvDetailActivity.start(requireActivity(), it, tv)
+            }
+        }
+
         lifecycleScope.launch {
             mainVM.tvList.collect {
                 if (it.isEmpty()) {
@@ -60,7 +68,7 @@ class TvFragment : BaseFragment() {
         }
 
         binding.rv.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = layoutMgr
             adapter = tvAdapter
         }
     }

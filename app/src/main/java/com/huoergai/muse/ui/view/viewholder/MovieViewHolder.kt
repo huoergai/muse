@@ -27,7 +27,7 @@ class MovieViewHolder(itemView: View) : BaseViewHolder(itemView) {
         mtvTitle.text = movie.title
         ratingBar.rating = movie.vote_average / 2f
 
-        ivPoster.load(Cook.buildImageUrl(movie.poster_path)) {
+        ivPoster.load(Cook.buildPosterUrl(movie.poster_path)) {
             allowHardware(false)
             crossfade(true)
             listener(onSuccess = { _, result ->

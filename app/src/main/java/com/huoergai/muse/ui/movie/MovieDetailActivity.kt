@@ -55,7 +55,7 @@ class MovieDetailActivity : BaseActivity() {
 
             movieVM.loadData(it.id)
 
-            val posterUrl = Cook.buildImageUrl(it.poster_path, true)
+            val posterUrl = Cook.buildBackdropUrl(it.backdrop_path)
             binding.ivPoster.load(posterUrl) { crossfade(true) }
 
             binding.mtvTitle.text = it.title
@@ -162,7 +162,7 @@ class MovieDetailActivity : BaseActivity() {
     }
 
     companion object {
-        private const val EXTRA_KEY_MOVIE = "detail:key:movie"
+        private const val EXTRA_KEY_MOVIE = "_extra:key:movie"
         fun start(activity: Activity, view: View, movie: Movie) {
             val intent = Intent(activity, MovieDetailActivity::class.java)
             intent.putExtra(EXTRA_KEY_MOVIE, movie)
