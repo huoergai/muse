@@ -1,14 +1,14 @@
-package com.huoergai.muse.ui.movie
+package com.huoergai.muse.ui.tv
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.huoergai.muse.model.network.Keyword
-import com.huoergai.muse.model.network.MovieDetail
 import com.huoergai.muse.model.network.Review
+import com.huoergai.muse.model.network.TvDetail
 import com.huoergai.muse.model.network.Video
 import com.huoergai.muse.network.dola.onSuccess
-import com.huoergai.muse.repo.MovieRepo
+import com.huoergai.muse.repo.TvRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -18,48 +18,47 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * D&T: 2023-10-24 16:36
+ * D&T: 2023-10-27 10:09
  * DES:
  */
 @HiltViewModel
-class MovieDetailViewModel @Inject constructor(
+class TvDetailViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val movieRepo: MovieRepo
+    private val tvRepo: TvRepo
 ) : ViewModel() {
-
-    private val _movieDetail = MutableStateFlow<MovieDetail?>(null)
-    val movieDetail: StateFlow<MovieDetail?> = _movieDetail
+    private val _tvDetail = MutableStateFlow<TvDetail?>(null)
+    val tvDetail: StateFlow<TvDetail?> = _tvDetail
 
     private val _videos = MutableStateFlow<List<Video>>(emptyList())
     val videos: StateFlow<List<Video>> = _videos
 
-    private val _reviews = MutableStateFlow<List<Review>>(emptyList())
-    val reviews: StateFlow<List<Review>> = _reviews
-
     private val _keywords = MutableStateFlow<List<Keyword>>(emptyList())
     val keywords: StateFlow<List<Keyword>> = _keywords
 
-    fun loadData(movieID: Int) {
+    private val _tvReviews = MutableStateFlow<List<Review>>(emptyList())
+    val tvReview: StateFlow<List<Review>> = _tvReviews
+
+    fun loadData(tvID: Int) {
         viewModelScope.launch {
             val defer = listOf(
                 async {
-                    movieRepo.loadMovieDetail(movieID).onSuccess {
-                        _movieDetail.value = this.data
+                    tvRepo.loadTvDetail(tvID).onSuccess {
+                        _tvDetail.value = this.data
                     }
                 },
                 async {
-                    movieRepo.loadVideos(movieID).onSuccess {
+                    tvRepo.loadVideos(tvID).onSuccess {
                         _videos.value = this.data.results
                     }
                 },
                 async {
-                    movieRepo.loadKeywords(movieID).onSuccess {
-                        _keywords.value = this.data.keywords
+                    tvRepo.loadKeywords(tvID).onSuccess {
+                        _keywords.value = this.data.results
                     }
                 },
                 async {
-                    movieRepo.loadReviews(movieID).onSuccess {
-                        _reviews.value = this.data.results
+                    tvRepo.loadReviews(tvID).onSuccess {
+                        _tvReviews.value = this.data.results
                     }
                 }
             )
@@ -67,6 +66,5 @@ class MovieDetailViewModel @Inject constructor(
             defer.awaitAll()
         }
     }
-
 
 }

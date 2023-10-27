@@ -2,11 +2,11 @@ package com.huoergai.muse.repo
 
 import androidx.annotation.WorkerThread
 import com.huoergai.muse.model.MovieListType
-import com.huoergai.muse.model.network.KeywordsResponse
 import com.huoergai.muse.model.network.MovieDetail
-import com.huoergai.muse.model.network.MovieVideoResponse
+import com.huoergai.muse.model.network.MovieKeywordsResponse
 import com.huoergai.muse.model.network.MoviesResponse
 import com.huoergai.muse.model.network.ReviewResponse
+import com.huoergai.muse.model.network.VideosResponse
 import com.huoergai.muse.network.dola.ApiResponse
 import com.huoergai.muse.network.service.MovieService
 
@@ -27,12 +27,12 @@ class MovieRepo(private val movieService: MovieService) : Repository {
     }
 
     @WorkerThread
-    suspend fun loadVideos(movieID: Int): ApiResponse<MovieVideoResponse> {
+    suspend fun loadVideos(movieID: Int): ApiResponse<VideosResponse> {
         return movieService.fetchVideos(movieID)
     }
 
     @WorkerThread
-    suspend fun loadKeywords(movieID: Int): ApiResponse<KeywordsResponse> {
+    suspend fun loadKeywords(movieID: Int): ApiResponse<MovieKeywordsResponse> {
         return movieService.loadKeywords(movieID)
     }
 

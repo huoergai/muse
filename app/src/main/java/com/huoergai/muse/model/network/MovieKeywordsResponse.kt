@@ -1,6 +1,6 @@
 package com.huoergai.muse.model.network
 
-data class KeywordsResponse(
+data class MovieKeywordsResponse(
     val id: Int,
     val keywords: List<Keyword>
 )

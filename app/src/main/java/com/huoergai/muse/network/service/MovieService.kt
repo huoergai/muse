@@ -1,10 +1,10 @@
 package com.huoergai.muse.network.service
 
-import com.huoergai.muse.model.network.KeywordsResponse
 import com.huoergai.muse.model.network.MovieDetail
-import com.huoergai.muse.model.network.MovieVideoResponse
+import com.huoergai.muse.model.network.MovieKeywordsResponse
 import com.huoergai.muse.model.network.MoviesResponse
 import com.huoergai.muse.model.network.ReviewResponse
+import com.huoergai.muse.model.network.VideosResponse
 import com.huoergai.muse.network.dola.ApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -28,10 +28,10 @@ interface MovieService {
     ): ApiResponse<MoviesResponse>
 
     @GET("movie/{movie_id}/videos")
-    suspend fun fetchVideos(@Path("movie_id") movieID: Int): ApiResponse<MovieVideoResponse>
+    suspend fun fetchVideos(@Path("movie_id") movieID: Int): ApiResponse<VideosResponse>
 
     @GET("movie/{movie_id}/keywords")
-    suspend fun loadKeywords(@Path("movie_id") movieID: Int): ApiResponse<KeywordsResponse>
+    suspend fun loadKeywords(@Path("movie_id") movieID: Int): ApiResponse<MovieKeywordsResponse>
 
     @GET("movie/{movie_id}/reviews")
     suspend fun fetchReviews(@Path("movie_id") movieID: Int): ApiResponse<ReviewResponse>

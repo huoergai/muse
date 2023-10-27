@@ -110,7 +110,6 @@
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
-
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtv_summary"
                 android:layout_width="match_parent"

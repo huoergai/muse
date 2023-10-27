@@ -85,6 +85,55 @@
                 android:layout_gravity="center_horizontal"
                 android:rating="0" />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trailers"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_trailer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/summary"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/reviews"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.core.widget.NestedScrollView>

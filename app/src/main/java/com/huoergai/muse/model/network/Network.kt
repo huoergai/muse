@@ -1,8 +1,8 @@
 package com.huoergai.muse.model.network
 
-data class ProductionCompany(
+data class Network(
     val id: Int,
-    val logo_path: String?,
+    val logo_path: String,
     val name: String,
     val origin_country: String
 )

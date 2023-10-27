@@ -61,9 +61,8 @@ class MovieDetailActivity : BaseActivity() {
             binding.mtvTitle.text = it.title
             binding.mtvReleaseDate.text = getString(R.string.release_date_holder, it.release_date)
             binding.ratingBar.rating = it.vote_average / 2f
-
+            binding.mtvSummary.text = it.overview
         }
-
     }
 
     private fun initView() {
@@ -87,7 +86,6 @@ class MovieDetailActivity : BaseActivity() {
             layoutManager = layoutMgr
             adapter = videoAdapter
         }
-
 
         val reviewAdapter = ReviewRvAdapter()
         lifecycleScope.launch {
@@ -122,10 +120,7 @@ class MovieDetailActivity : BaseActivity() {
                     this.setImageResource(R.drawable.baseline_favorite_border_24)
                 }
             }
-
         }
-
-
 
         lifecycleScope.launch {
             movieVM.keywords.collect {
@@ -143,12 +138,6 @@ class MovieDetailActivity : BaseActivity() {
                         binding.cgTags.addView(this)
                     }
                 }
-            }
-        }
-
-        lifecycleScope.launch {
-            movieVM.movieDetail.collect {
-                binding.mtvSummary.text = it?.overview
             }
         }
     }

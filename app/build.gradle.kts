@@ -33,9 +33,9 @@ android {
                 cppFlags += "-std=c++20"
             }
             ndk {
-                // "x86" 'x86_64' 'arm64-v8a' "armeabi-v7a",
+                // "x86", "x86_64", "arm64-v8a", "armeabi-v7a"
                 //noinspection ChromeOsAbiSupport
-                abiFilters += listOf("arm64-v8a")
+                abiFilters += listOf("arm64-v8a", "x86_64")
             }
         }
     }
