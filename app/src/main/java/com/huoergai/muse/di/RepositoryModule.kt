@@ -2,9 +2,11 @@ package com.huoergai.muse.di
 
 import com.huoergai.muse.network.service.ConfigService
 import com.huoergai.muse.network.service.MovieService
+import com.huoergai.muse.network.service.PeopleService
 import com.huoergai.muse.network.service.TvService
 import com.huoergai.muse.repo.ConfigRepo
 import com.huoergai.muse.repo.MovieRepo
+import com.huoergai.muse.repo.PeopleRepo
 import com.huoergai.muse.repo.TvRepo
 import dagger.Module
 import dagger.Provides
@@ -32,6 +34,11 @@ object RepositoryModule {
     @Provides
     fun provideTvRepo(tvService: TvService): TvRepo {
         return TvRepo(tvService)
+    }
+
+    @Provides
+    fun providePeopleRepo(peopleService: PeopleService): PeopleRepo {
+        return PeopleRepo(peopleService)
     }
 
 }

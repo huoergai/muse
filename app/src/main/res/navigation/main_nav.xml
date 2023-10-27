@@ -19,8 +19,8 @@
 
     <fragment
         android:id="@+id/nav_me"
-        android:name="com.huoergai.muse.ui.me.MeFragment"
-        android:label="@string/me"
-        tools:layout="@layout/fragment_me" />
+        android:name="com.huoergai.muse.ui.people.PeopleFragment"
+        android:label="@string/people"
+        tools:layout="@layout/fragment_people" />
 
 </navigation>

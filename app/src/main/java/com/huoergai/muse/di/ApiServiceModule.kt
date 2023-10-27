@@ -3,6 +3,7 @@ package com.huoergai.muse.di
 import com.huoergai.muse.network.service.AccountService
 import com.huoergai.muse.network.service.ConfigService
 import com.huoergai.muse.network.service.MovieService
+import com.huoergai.muse.network.service.PeopleService
 import com.huoergai.muse.network.service.TvService
 import dagger.Module
 import dagger.Provides
@@ -36,6 +37,11 @@ object ApiServiceModule {
     @Provides
     fun provideTvService(retrofit: Retrofit): TvService {
         return retrofit.create(TvService::class.java)
+    }
+
+    @Provides
+    fun providePeopleService(retrofit: Retrofit): PeopleService {
+        return retrofit.create(PeopleService::class.java)
     }
 
 }

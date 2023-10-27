@@ -8,9 +8,11 @@ import com.huoergai.muse.model.TvListType
 import com.huoergai.muse.model.entity.Configuration
 import com.huoergai.muse.model.entity.Movie
 import com.huoergai.muse.model.entity.Tv
+import com.huoergai.muse.model.network.Person
 import com.huoergai.muse.network.dola.onSuccess
 import com.huoergai.muse.repo.ConfigRepo
 import com.huoergai.muse.repo.MovieRepo
+import com.huoergai.muse.repo.PeopleRepo
 import com.huoergai.muse.repo.TvRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,7 +30,8 @@ class MainViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val configRepo: ConfigRepo,
     private val movieRepo: MovieRepo,
-    private val tvRepo: TvRepo
+    private val tvRepo: TvRepo,
+    private val peopleRepo: PeopleRepo
 ) : ViewModel() {
 
     private val _isLoading = MutableStateFlow(false)
@@ -43,42 +46,45 @@ class MainViewModel @Inject constructor(
     private val _tvList = MutableStateFlow<List<Tv>>(emptyList())
     val tvList: StateFlow<List<Tv>> = _tvList
 
+    private val _people = MutableStateFlow<List<Person>>(emptyList())
+    val persons: StateFlow<List<Person>> = _people
+
     fun loadConfig() {
         viewModelScope.launch {
-            _isLoading.value = true
             configRepo.loadConfig().onSuccess {
-                Timber.tag("MainViewModel").d("config ${data.images.base_url}")
-                _config.value = data
+                Timber.tag("MainViewModel").d("config")
+                _config.value = this.data
             }
-            _isLoading.value = false
         }
     }
 
     fun loadMovies() {
         viewModelScope.launch {
-            _isLoading.value = true
-
             movieRepo.loadMovies(MovieListType.NowPlaying).onSuccess {
-                val movies = data.results
+                val movies = this.data.results
                 Timber.tag("MainViewModel").d("movies ${movies.size}")
                 _movieList.value = movies
             }
-
-            _isLoading.value = false
         }
     }
 
     fun loadTvs() {
         viewModelScope.launch {
-            _isLoading.value = true
             tvRepo.loadTvs(TvListType.POPULAR).onSuccess {
-                val movies = data.results
+                val movies = this.data.results
                 Timber.tag("MainViewModel").d("TVs ${movies.size}")
                 _tvList.value = movies
             }
-
-            _isLoading.value = false
         }
     }
 
+    fun loadPeople() {
+        viewModelScope.launch {
+            peopleRepo.loadPopularPeople().onSuccess {
+                val people = this.data.results
+                Timber.tag("MainViewModel").d("People ${people.size}")
+                _people.value = people
+            }
+        }
+    }
 }

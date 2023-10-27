@@ -1,6 +1,6 @@
 package com.huoergai.muse.model.network
 
-data class PersonDetailResponse(
+data class PersonDetail(
     val adult: Boolean,
     val also_known_as: List<String>,
     val biography: String,

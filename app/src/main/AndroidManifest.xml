@@ -27,6 +27,7 @@
 
         <activity android:name=".ui.movie.MovieDetailActivity" />
         <activity android:name=".ui.tv.TvDetailActivity" />
+        <activity android:name=".ui.people.PersonDetailActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

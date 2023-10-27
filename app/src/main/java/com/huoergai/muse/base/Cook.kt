@@ -10,6 +10,11 @@ import com.huoergai.muse.network.YOUTUBE_VIDEO_URL
  */
 object Cook {
 
+    fun buildProfileUrl(profilePath: String): String {
+        val url = "${IMAGE_BASE_URL}w185${profilePath}"
+        return url
+    }
+
     fun buildPosterUrl(posterPath: String): String {
         val url = "${IMAGE_BASE_URL}w342${posterPath}"
         return url

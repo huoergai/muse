@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context="com.huoergai.muse.ui.movie.MovieFragment">
 
     <com.google.android.material.textview.MaterialTextView
@@ -13,7 +14,7 @@
         android:text="@string/movie" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMovies"
+        android:id="@+id/rv_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

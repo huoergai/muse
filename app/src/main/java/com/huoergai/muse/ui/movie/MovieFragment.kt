@@ -51,7 +51,7 @@ class MovieFragment : BaseFragment() {
             }
         }
 
-        binding.rvMovies.apply {
+        binding.rvMovie.apply {
             layoutManager = gridLayoutMgr
             adapter = rvAdapter
         }

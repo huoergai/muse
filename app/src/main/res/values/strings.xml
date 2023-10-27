@@ -3,7 +3,7 @@
 
     <string name="movie">movie</string>
     <string name="tv">tv</string>
-    <string name="me">me</string>
+    <string name="people">people</string>
 
     <string name="release_date_holder">Release Date: %1$s</string>
     <string name="trailers">Trailers</string>
