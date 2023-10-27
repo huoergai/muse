@@ -2,5 +2,6 @@
 <resources>
 
     <dimen name="default_corner_radius">16dp</dimen>
+    <dimen name="corner_radius_small">8dp</dimen>
 
 </resources>
