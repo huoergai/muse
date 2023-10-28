@@ -60,7 +60,7 @@ class MainViewModel @Inject constructor(
 
     fun loadMovies() {
         viewModelScope.launch {
-            movieRepo.loadMovies(MovieListType.NowPlaying).onSuccess {
+            movieRepo.loadMovies(MovieListType.Popular).onSuccess {
                 val movies = this.data.results
                 Timber.tag("MainViewModel").d("movies ${movies.size}")
                 _movieList.value = movies

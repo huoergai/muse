@@ -130,6 +130,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
 
+    // palette
     implementation("androidx.palette:palette-ktx:1.0.0")
 
     // expandable TextView
