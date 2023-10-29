@@ -2,7 +2,7 @@ package com.huoergai.muse.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.huoergai.muse.R
@@ -29,7 +29,9 @@ class MainActivity : BaseActivity() {
 
     private fun initView() {
         val navView: BottomNavigationView = binding.bnv
-        val navController = findNavController(R.id.fcv)
+        val nhf = supportFragmentManager.findFragmentById(R.id.fcv) as NavHostFragment
+        val navController = nhf.navController
+        navController.setGraph(R.navigation.main_nav)
         navView.setupWithNavController(navController)
     }
 

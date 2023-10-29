@@ -9,6 +9,7 @@
         <item name="colorControlHighlight">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="titleTextColor">@color/white</item>
+        <item name="android:windowBackground">@color/background</item>
     </style>
 
 </resources>

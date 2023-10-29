@@ -15,7 +15,7 @@ import com.huoergai.muse.model.entity.Tv
  * D&T: 2023-10-25 15:33
  * DES:
  */
-class TvViewHolder(private val itemView: View) : BaseViewHolder(itemView) {
+class TvViewHolder(itemView: View) : BaseViewHolder(itemView) {
     private val sivPoster = itemView.findViewById<AppCompatImageView>(R.id.iv_poster)
     private val mtvName = itemView.findViewById<MaterialTextView>(R.id.mtv_name)
     private val mtvDate = itemView.findViewById<MaterialTextView>(R.id.mtv_date)

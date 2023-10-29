@@ -23,7 +23,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -230,12 +229,7 @@ public class CpuMonitor {
 
         executor = Executors.newSingleThreadScheduledExecutor();
         @SuppressWarnings("unused") // Prevent downstream linter warnings.
-        Future<?> possiblyIgnoredError = executor.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                cpuUtilizationTask();
-            }
-        }, 0, CPU_STAT_SAMPLE_PERIOD_MS, TimeUnit.MILLISECONDS);
+        Future<?> possiblyIgnoredError = executor.scheduleAtFixedRate(() -> cpuUtilizationTask(), 0, CPU_STAT_SAMPLE_PERIOD_MS, TimeUnit.MILLISECONDS);
     }
 
     private void cpuUtilizationTask() {
