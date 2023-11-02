@@ -1,5 +1,6 @@
 package com.huoergai.muse.ui.view.viewholder
 
+import android.graphics.Color
 import android.view.View
 import android.widget.RatingBar
 import androidx.appcompat.widget.AppCompatImageView
@@ -11,6 +12,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseViewHolder
 import com.huoergai.muse.base.Cook
+import com.huoergai.muse.base.PaletteStore
 import com.huoergai.muse.model.entity.Movie
 
 /**
@@ -31,11 +33,19 @@ class MovieViewHolder(itemView: View) : BaseViewHolder(itemView) {
             allowHardware(false)
             crossfade(true)
             listener(onSuccess = { _, result ->
-                Palette.Builder(result.drawable.toBitmap()).generate { p ->
-                    p?.darkVibrantSwatch?.rgb?.let {
-                        llc.setBackgroundColor(it)
+                val palette = PaletteStore.get(movie.poster_path)
+                if (palette == null) {
+                    Palette.Builder(result.drawable.toBitmap()).generate { p ->
+                        val dvs = p?.darkVibrantSwatch
+                        if (dvs != null) {
+                            PaletteStore.put(movie.poster_path, p)
+                            llc.setBackgroundColor(dvs.rgb)
+                        }
                     }
+                } else {
+                    llc.setBackgroundColor(palette.darkVibrantSwatch?.rgb ?: Color.YELLOW)
                 }
+
             })
         }
     }
