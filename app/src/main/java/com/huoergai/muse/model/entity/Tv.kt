@@ -7,7 +7,6 @@ import kotlinx.parcelize.Parcelize
  * D&T: 2023-10-12 16:04
  * DES:
  */
-
 @Parcelize
 data class Tv(
     val backdrop_path: String,

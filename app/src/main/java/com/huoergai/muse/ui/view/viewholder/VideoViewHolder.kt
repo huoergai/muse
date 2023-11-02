@@ -6,8 +6,8 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseViewHolder
-import com.huoergai.muse.base.Cook
 import com.huoergai.muse.model.network.Video
+import com.huoergai.muse.network.Api
 
 /**
  * D&T: 2023-10-25 10:44
@@ -19,7 +19,7 @@ class VideoViewHolder(itemView: View) : BaseViewHolder(itemView) {
 
     fun bind(video: Video) {
         mtvTitle.text = video.name
-        sivThumbnail.load(Cook.videoThumbnailUrl(video.key)) {
+        sivThumbnail.load(Api.videoThumbnailUrl(video.key)) {
             crossfade(true)
         }
     }

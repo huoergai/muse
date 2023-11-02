@@ -36,7 +36,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initData() {
-        mainVM.loadConfig()
+        mainVM.initData()
     }
 
     private fun initEvent() {

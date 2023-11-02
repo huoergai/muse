@@ -15,7 +15,6 @@ plugins {
 
 android {
     compileSdk = 34
-    ndkVersion = "26.1.10909125"
     namespace = "com.huoergai.muse"
     defaultConfig {
         applicationId = "com.huoergai.muse"
@@ -28,16 +27,6 @@ android {
         }"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        externalNativeBuild {
-            cmake {
-                cppFlags += "-std=c++20"
-            }
-            ndk {
-                // "x86", "x86_64", "arm64-v8a", "armeabi-v7a"
-                //noinspection ChromeOsAbiSupport
-                abiFilters += listOf("arm64-v8a", "x86_64")
-            }
-        }
     }
 
     buildTypes {
@@ -60,12 +49,6 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    externalNativeBuild {
-        cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.22.1"
-        }
-    }
 
     buildFeatures {
         viewBinding = true
@@ -76,9 +59,6 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-        jniLibs {
-            useLegacyPackaging = true
         }
     }
 }

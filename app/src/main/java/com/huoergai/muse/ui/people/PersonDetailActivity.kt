@@ -13,10 +13,10 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseActivity
-import com.huoergai.muse.base.Cook
 import com.huoergai.muse.databinding.ActivityPersonDetailBinding
 import com.huoergai.muse.extension.enableTransition
 import com.huoergai.muse.model.network.Person
+import com.huoergai.muse.network.Api
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -47,7 +47,7 @@ class PersonDetailActivity : BaseActivity() {
         lifecycleScope.launch {
             vm.personDetail.collect { p ->
                 p?.let {
-                    binding.ivAvatar.load(Cook.buildProfileUrl(it.profile_path)) {
+                    binding.ivAvatar.load(Api.buildProfileUrl(it.profile_path)) {
                         transformations(CircleCropTransformation())
                     }
                 }

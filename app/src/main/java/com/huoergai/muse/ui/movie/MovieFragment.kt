@@ -24,12 +24,6 @@ class MovieFragment : BaseFragment() {
 
     private val mainVM: MainViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        mainVM.loadMovies()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

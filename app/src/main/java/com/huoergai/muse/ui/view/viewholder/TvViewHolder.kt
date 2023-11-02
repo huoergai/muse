@@ -8,8 +8,8 @@ import coil.transform.RoundedCornersTransformation
 import com.google.android.material.textview.MaterialTextView
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseViewHolder
-import com.huoergai.muse.base.Cook
 import com.huoergai.muse.model.entity.Tv
+import com.huoergai.muse.network.Api
 
 /**
  * D&T: 2023-10-25 15:33
@@ -26,7 +26,7 @@ class TvViewHolder(itemView: View) : BaseViewHolder(itemView) {
         mtvDate.text = tv.first_air_date
         ratingBar.rating = tv.vote_average / 2f
 
-        sivPoster.load(Cook.buildPosterUrl(tv.poster_path)) {
+        sivPoster.load(Api.buildPosterUrl(tv.poster_path)) {
             transformations(RoundedCornersTransformation(sivPoster.resources.getDimension(R.dimen.corner_radius_small)))
         }
     }

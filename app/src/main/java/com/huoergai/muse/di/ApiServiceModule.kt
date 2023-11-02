@@ -1,7 +1,5 @@
 package com.huoergai.muse.di
 
-import com.huoergai.muse.network.service.AccountService
-import com.huoergai.muse.network.service.ConfigService
 import com.huoergai.muse.network.service.MovieService
 import com.huoergai.muse.network.service.PeopleService
 import com.huoergai.muse.network.service.TvService
@@ -18,16 +16,6 @@ import retrofit2.Retrofit
 @Module
 @InstallIn(ActivityRetainedComponent::class)
 object ApiServiceModule {
-
-    @Provides
-    fun provideAccountService(retrofit: Retrofit): AccountService {
-        return retrofit.create(AccountService::class.java)
-    }
-
-    @Provides
-    fun provideConfigService(retrofit: Retrofit): ConfigService {
-        return retrofit.create(ConfigService::class.java)
-    }
 
     @Provides
     fun provideMovieService(retrofit: Retrofit): MovieService {

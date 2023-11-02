@@ -19,10 +19,10 @@ import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseActivity
-import com.huoergai.muse.base.Cook
 import com.huoergai.muse.databinding.ActivityMovieDetailBinding
 import com.huoergai.muse.extension.enableTransition
 import com.huoergai.muse.model.entity.Movie
+import com.huoergai.muse.network.Api
 import com.huoergai.muse.ui.view.adapter.ReviewRvAdapter
 import com.huoergai.muse.ui.view.adapter.VideoRvAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,7 +55,7 @@ class MovieDetailActivity : BaseActivity() {
 
             movieVM.loadData(it.id)
 
-            val posterUrl = Cook.buildBackdropUrl(it.backdrop_path)
+            val posterUrl = Api.buildBackdropUrl(it.backdrop_path)
             binding.ivPoster.load(posterUrl) { crossfade(true) }
 
             binding.mtvTitle.text = it.title
@@ -71,7 +71,7 @@ class MovieDetailActivity : BaseActivity() {
             setItemClickListener {
                 val pos = layoutMgr.getPosition(it)
                 val video = this.getData(pos)
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(Cook.videoUrl(video.key)))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(Api.videoUrl(video.key)))
                 startActivity(intent)
             }
         }

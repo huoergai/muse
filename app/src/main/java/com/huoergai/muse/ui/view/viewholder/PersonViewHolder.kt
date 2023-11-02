@@ -7,8 +7,8 @@ import coil.transform.CircleCropTransformation
 import com.google.android.material.textview.MaterialTextView
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseViewHolder
-import com.huoergai.muse.base.Cook
 import com.huoergai.muse.model.network.Person
+import com.huoergai.muse.network.Api
 
 /**
  * D&T: 2023-10-27 16:51
@@ -20,7 +20,7 @@ class PersonViewHolder(view: View) : BaseViewHolder(view) {
 
     fun bind(person: Person) {
         mtvName.text = person.name
-        ivAvatar.load(Cook.buildProfileUrl(person.profile_path)) {
+        ivAvatar.load(Api.buildProfileUrl(person.profile_path)) {
             transformations(CircleCropTransformation())
         }
     }

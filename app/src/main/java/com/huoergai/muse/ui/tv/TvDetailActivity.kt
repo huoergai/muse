@@ -19,10 +19,10 @@ import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseActivity
-import com.huoergai.muse.base.Cook
 import com.huoergai.muse.databinding.ActivityTvDetailBinding
 import com.huoergai.muse.extension.enableTransition
 import com.huoergai.muse.model.entity.Tv
+import com.huoergai.muse.network.Api
 import com.huoergai.muse.ui.view.adapter.ReviewRvAdapter
 import com.huoergai.muse.ui.view.adapter.VideoRvAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,7 +56,7 @@ class TvDetailActivity : BaseActivity() {
 
             tvVM.loadData(it.id)
 
-            binding.sivPoster.load(Cook.buildBackdropUrl(it.backdrop_path))
+            binding.sivPoster.load(Api.buildBackdropUrl(it.backdrop_path))
             binding.mtvTitle.text = it.name
             binding.mtvReleaseDate.text = getString(R.string.first_air_date, it.first_air_date)
             binding.ratingBar.rating = it.vote_average / 2f
@@ -70,7 +70,7 @@ class TvDetailActivity : BaseActivity() {
             setItemClickListener {
                 val pos = layoutMgr.getPosition(it)
                 val video = this.getData(pos)
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(Cook.videoUrl(video.key)))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(Api.videoUrl(video.key)))
                 startActivity(intent)
             }
         }

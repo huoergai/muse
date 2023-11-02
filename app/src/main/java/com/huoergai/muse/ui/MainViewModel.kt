@@ -5,12 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.huoergai.muse.model.MovieListType
 import com.huoergai.muse.model.TvListType
-import com.huoergai.muse.model.entity.Configuration
 import com.huoergai.muse.model.entity.Movie
 import com.huoergai.muse.model.entity.Tv
 import com.huoergai.muse.model.network.Person
 import com.huoergai.muse.network.dola.onSuccess
-import com.huoergai.muse.repo.ConfigRepo
 import com.huoergai.muse.repo.MovieRepo
 import com.huoergai.muse.repo.PeopleRepo
 import com.huoergai.muse.repo.TvRepo
@@ -28,17 +26,10 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val configRepo: ConfigRepo,
     private val movieRepo: MovieRepo,
     private val tvRepo: TvRepo,
     private val peopleRepo: PeopleRepo
 ) : ViewModel() {
-
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading
-
-    private val _config = MutableStateFlow(Configuration.defaultConfig)
-    val config: StateFlow<Configuration> = _config
 
     private val _movieList = MutableStateFlow<List<Movie>>(emptyList())
     val movieList: StateFlow<List<Movie>> = _movieList
@@ -49,13 +40,10 @@ class MainViewModel @Inject constructor(
     private val _people = MutableStateFlow<List<Person>>(emptyList())
     val persons: StateFlow<List<Person>> = _people
 
-    fun loadConfig() {
-        viewModelScope.launch {
-            configRepo.loadConfig().onSuccess {
-                Timber.tag("MainViewModel").d("config")
-                _config.value = this.data
-            }
-        }
+    fun initData() {
+        loadMovies()
+        loadTvs()
+        loadPeople()
     }
 
     fun loadMovies() {

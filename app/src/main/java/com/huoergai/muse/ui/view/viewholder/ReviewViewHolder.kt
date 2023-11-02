@@ -7,8 +7,8 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseViewHolder
-import com.huoergai.muse.base.Cook
 import com.huoergai.muse.model.network.Review
+import com.huoergai.muse.network.Api
 import com.ms.square.android.expandabletextview.ExpandableTextView
 
 /**
@@ -37,7 +37,7 @@ class ReviewViewHolder(itemView: View) : BaseViewHolder(itemView) {
             }
         } else {
             mtvAvatar.visibility = View.INVISIBLE
-            sivAvatar.load(Cook.buildPosterUrl(avatarPath))
+            sivAvatar.load(Api.buildPosterUrl(avatarPath))
         }
 
     }

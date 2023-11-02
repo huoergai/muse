@@ -23,12 +23,6 @@ class PeopleFragment : BaseFragment() {
 
     private val mainVM by activityViewModels<MainViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        mainVM.loadPeople()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

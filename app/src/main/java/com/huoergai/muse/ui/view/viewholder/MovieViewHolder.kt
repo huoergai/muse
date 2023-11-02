@@ -11,9 +11,9 @@ import coil.load
 import com.google.android.material.textview.MaterialTextView
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseViewHolder
-import com.huoergai.muse.base.Cook
 import com.huoergai.muse.base.PaletteStore
 import com.huoergai.muse.model.entity.Movie
+import com.huoergai.muse.network.Api
 
 /**
  * D&T: 2023-10-25 10:43
@@ -29,7 +29,7 @@ class MovieViewHolder(itemView: View) : BaseViewHolder(itemView) {
         mtvTitle.text = movie.title
         ratingBar.rating = movie.vote_average / 2f
 
-        ivPoster.load(Cook.buildPosterUrl(movie.poster_path)) {
+        ivPoster.load(Api.buildPosterUrl(movie.poster_path)) {
             allowHardware(false)
             crossfade(true)
             listener(onSuccess = { _, result ->
