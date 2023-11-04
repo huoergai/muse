@@ -1,7 +1,4 @@
-import com.android.build.api.variant.BuildConfigField
 import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
-import org.jetbrains.kotlin.konan.properties.Properties
-import java.io.FileInputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -9,8 +6,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
-    kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -27,6 +24,7 @@ android {
         }"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        ksp { arg("room.schemaLocation", "$projectDir/schemas") }
     }
 
     buildTypes {
@@ -52,8 +50,6 @@ android {
 
     buildFeatures {
         viewBinding = true
-        // to generate BuildConfig.java file
-        buildConfig = true
     }
 
     packaging {
@@ -61,34 +57,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-}
-
-androidComponents {
-    onVariants {
-        if (it.buildType == "debug") {
-            it.buildConfigFields.apply {
-                put("TMDB_KEY", BuildConfigField("String", "\"${getKey()}\"", "api_key"))
-                put("TMDB_TOKEN", BuildConfigField("String", "\"${getToken()}\"", "api_token"))
-            }
-        }
-    }
-}
-
-fun getKey(): String {
-    val props = Properties()
-    props.load(FileInputStream(File("local.properties")))
-    return props.getProperty("TMDB_KEY", "")
-}
-
-fun getToken(): String {
-    val props = Properties()
-    props.load(FileInputStream(File("local.properties")))
-    return props.getProperty("TMDB_TOKEN", "")
-}
-
-// hilt: Allow references to generated code
-kapt {
-    correctErrorTypes = true
 }
 
 dependencies {
@@ -124,7 +92,7 @@ dependencies {
     // hilt
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
     implementation("com.google.dagger:hilt-android:2.48.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.48.1")
+    ksp("com.google.dagger:hilt-android-compiler:2.48.1")
 
     // log
     implementation("com.jakewharton.timber:timber:5.0.1")
@@ -143,6 +111,13 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
     testImplementation("com.squareup.okhttp3:mockwebserver")
+
+    // room
+    val roomVersion = "2.6.0"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+    testImplementation("androidx.room:room-testing:$roomVersion")
 
     // test
     testImplementation("junit:junit:4.13.2")
