@@ -45,12 +45,12 @@ class TvDetailActivity : BaseActivity() {
         binding = ActivityTvDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupActionBar()
-
         initView()
         initEvent()
 
         val tv = IntentCompat.getParcelableExtra(intent, EXTRA_KEY_TV, Tv::class.java)
+        setupActionBar(tv?.name ?: "")
+
         tv?.let {
             ViewCompat.setTransitionName(findViewById(android.R.id.content), it.name)
 
@@ -127,12 +127,12 @@ class TvDetailActivity : BaseActivity() {
         }
     }
 
-    private fun setupActionBar() {
+    private fun setupActionBar(title: String) {
         setSupportActionBar(binding.toolBar)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.outline_arrow_back_24)
-            title = ""
+            this.title = title
         }
     }
 

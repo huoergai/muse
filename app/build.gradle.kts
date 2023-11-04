@@ -22,7 +22,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        archivesName = "Muse-$versionCode-$versionName-${
+        archivesName = "Muse-$versionName-${
             LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss"))
         }"
 

@@ -45,7 +45,7 @@ class MovieDetailActivity : BaseActivity() {
 
         val movie = IntentCompat.getParcelableExtra(intent, EXTRA_KEY_MOVIE, Movie::class.java)
 
-        setupActionBar()
+        setupActionBar(movie?.title ?: "")
 
         initView()
         initEvent()
@@ -100,12 +100,12 @@ class MovieDetailActivity : BaseActivity() {
         }
     }
 
-    private fun setupActionBar() {
+    private fun setupActionBar(title: String) {
         setSupportActionBar(binding.toolBar)
         supportActionBar?.run {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.outline_arrow_back_24)
-            this.title = ""
+            this.title = title
         }
     }
 

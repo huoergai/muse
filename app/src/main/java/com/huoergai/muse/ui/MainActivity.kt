@@ -28,6 +28,8 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initView() {
+        setSupportActionBar(binding.toolBar)
+
         val navView: BottomNavigationView = binding.bnv
         val nhf = supportFragmentManager.findFragmentById(R.id.fcv) as NavHostFragment
         val navController = nhf.navController

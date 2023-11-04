@@ -13,6 +13,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:collapsedTitleTextColor="@color/white"
             app:contentScrim="@color/colorPrimary"
             app:expandedTitleGravity="top|start"
             app:expandedTitleTextColor="@android:color/transparent"
@@ -35,13 +36,12 @@
                 android:src="@drawable/baseline_favorite_border_24"
                 android:tint="@color/colorPrimary" />
 
-            <com.google.android.material.appbar.MaterialToolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tool_bar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:navigationIconTint="@color/white"
-                app:titleTextColor="@color/white" />
+                app:navigationIconTint="@color/white" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -121,7 +121,9 @@
                 android:id="@+id/cg_tags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:background="@color/background800"
+                android:padding="8dp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtv_review_title"

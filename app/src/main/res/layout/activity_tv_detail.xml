@@ -13,9 +13,10 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:collapsedTitleTextColor="@color/white"
             app:contentScrim="@color/colorPrimary"
-            app:expandedTitleGravity="start|top"
-            app:expandedTitleTextAppearance="@android:color/transparent"
+            app:expandedTitleGravity="top|start"
+            app:expandedTitleTextColor="@android:color/transparent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -35,7 +36,7 @@
                 android:src="@drawable/baseline_favorite_border_24"
                 android:tint="@color/colorPrimary" />
 
-            <com.google.android.material.appbar.MaterialToolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tool_bar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -117,7 +118,9 @@
                 android:id="@+id/cg_tags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:background="@color/background800"
+                android:padding="8dp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
