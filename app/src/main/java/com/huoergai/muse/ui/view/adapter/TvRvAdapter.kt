@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseRecyclerViewAdapter
-import com.huoergai.muse.model.entity.Tv
+import com.huoergai.muse.persistence.entity.Tv
 import com.huoergai.muse.ui.view.viewholder.TvViewHolder
 
 /**

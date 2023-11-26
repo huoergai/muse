@@ -8,8 +8,8 @@ import coil.transform.RoundedCornersTransformation
 import com.google.android.material.textview.MaterialTextView
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseViewHolder
-import com.huoergai.muse.model.entity.Tv
 import com.huoergai.muse.network.Api
+import com.huoergai.muse.persistence.entity.Tv
 
 /**
  * D&T: 2023-10-25 15:33

@@ -3,11 +3,11 @@ package com.huoergai.muse.ui.tv
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.huoergai.muse.model.network.Keyword
-import com.huoergai.muse.model.network.Review
-import com.huoergai.muse.model.network.TvDetail
-import com.huoergai.muse.model.network.Video
 import com.huoergai.muse.network.dola.onSuccess
+import com.huoergai.muse.network.model.network.Keyword
+import com.huoergai.muse.network.model.network.Review
+import com.huoergai.muse.network.model.network.Video
+import com.huoergai.muse.persistence.entity.Tv
 import com.huoergai.muse.repo.TvRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
@@ -26,8 +26,8 @@ class TvDetailViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val tvRepo: TvRepo
 ) : ViewModel() {
-    private val _tvDetail = MutableStateFlow<TvDetail?>(null)
-    val tvDetail: StateFlow<TvDetail?> = _tvDetail
+    private val _tvDetail = MutableStateFlow<Tv?>(null)
+    val tvDetail: StateFlow<Tv?> = _tvDetail
 
     private val _videos = MutableStateFlow<List<Video>>(emptyList())
     val videos: StateFlow<List<Video>> = _videos
@@ -41,11 +41,6 @@ class TvDetailViewModel @Inject constructor(
     fun loadData(tvID: Int) {
         viewModelScope.launch {
             val defer = listOf(
-                async {
-                    tvRepo.loadTvDetail(tvID).onSuccess {
-                        _tvDetail.value = this.data
-                    }
-                },
                 async {
                     tvRepo.loadVideos(tvID).onSuccess {
                         _videos.value = this.data.results

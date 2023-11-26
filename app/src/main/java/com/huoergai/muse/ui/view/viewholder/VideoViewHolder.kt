@@ -6,8 +6,8 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseViewHolder
-import com.huoergai.muse.model.network.Video
 import com.huoergai.muse.network.Api
+import com.huoergai.muse.network.model.network.Video
 
 /**
  * D&T: 2023-10-25 10:44

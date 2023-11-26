@@ -12,8 +12,8 @@ import com.google.android.material.textview.MaterialTextView
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseViewHolder
 import com.huoergai.muse.base.PaletteStore
-import com.huoergai.muse.model.entity.Movie
 import com.huoergai.muse.network.Api
+import com.huoergai.muse.persistence.entity.Movie
 
 /**
  * D&T: 2023-10-25 10:43

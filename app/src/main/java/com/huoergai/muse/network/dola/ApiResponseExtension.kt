@@ -25,3 +25,11 @@ fun <T> ApiResponse<T>.onSuccess(onResult: ApiResponse.Success<T>.() -> Unit): A
     }
     return this
 }
+
+
+suspend fun <T> ApiResponse<T>.suspendOnSuccess(onResult: suspend ApiResponse.Success<T>.() -> Unit): ApiResponse<T> {
+    if (this is ApiResponse.Success) {
+        onResult(this)
+    }
+    return this
+}

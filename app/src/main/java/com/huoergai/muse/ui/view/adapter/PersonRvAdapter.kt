@@ -5,7 +5,7 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseRecyclerViewAdapter
-import com.huoergai.muse.model.network.Person
+import com.huoergai.muse.persistence.entity.Person
 import com.huoergai.muse.ui.view.viewholder.PersonViewHolder
 
 /**

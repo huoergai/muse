@@ -3,8 +3,8 @@ package com.huoergai.muse.ui.people
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.huoergai.muse.model.network.PersonDetail
 import com.huoergai.muse.network.dola.onSuccess
+import com.huoergai.muse.network.model.network.PersonDetail
 import com.huoergai.muse.repo.PeopleRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

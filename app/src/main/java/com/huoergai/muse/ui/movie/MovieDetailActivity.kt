@@ -21,8 +21,8 @@ import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseActivity
 import com.huoergai.muse.databinding.ActivityMovieDetailBinding
 import com.huoergai.muse.extension.enableTransition
-import com.huoergai.muse.model.entity.Movie
 import com.huoergai.muse.network.Api
+import com.huoergai.muse.persistence.entity.Movie
 import com.huoergai.muse.ui.view.adapter.ReviewRvAdapter
 import com.huoergai.muse.ui.view.adapter.VideoRvAdapter
 import dagger.hilt.android.AndroidEntryPoint

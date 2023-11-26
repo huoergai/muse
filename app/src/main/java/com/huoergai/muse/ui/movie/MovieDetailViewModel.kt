@@ -3,11 +3,11 @@ package com.huoergai.muse.ui.movie
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.huoergai.muse.model.network.Keyword
-import com.huoergai.muse.model.network.MovieDetail
-import com.huoergai.muse.model.network.Review
-import com.huoergai.muse.model.network.Video
 import com.huoergai.muse.network.dola.onSuccess
+import com.huoergai.muse.network.model.network.Keyword
+import com.huoergai.muse.network.model.network.Review
+import com.huoergai.muse.network.model.network.Video
+import com.huoergai.muse.persistence.entity.Movie
 import com.huoergai.muse.repo.MovieRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
@@ -27,8 +27,8 @@ class MovieDetailViewModel @Inject constructor(
     private val movieRepo: MovieRepo
 ) : ViewModel() {
 
-    private val _movieDetail = MutableStateFlow<MovieDetail?>(null)
-    val movieDetail: StateFlow<MovieDetail?> = _movieDetail
+    private val _movieDetail = MutableStateFlow<Movie?>(null)
+    val movieDetail: StateFlow<Movie?> = _movieDetail
 
     private val _videos = MutableStateFlow<List<Video>>(emptyList())
     val videos: StateFlow<List<Video>> = _videos
@@ -42,11 +42,6 @@ class MovieDetailViewModel @Inject constructor(
     fun loadData(movieID: Int) {
         viewModelScope.launch {
             val defer = listOf(
-                async {
-                    movieRepo.loadMovieDetail(movieID).onSuccess {
-                        _movieDetail.value = this.data
-                    }
-                },
                 async {
                     movieRepo.loadVideos(movieID).onSuccess {
                         _videos.value = this.data.results

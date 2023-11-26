@@ -15,8 +15,8 @@ import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseActivity
 import com.huoergai.muse.databinding.ActivityPersonDetailBinding
 import com.huoergai.muse.extension.enableTransition
-import com.huoergai.muse.model.network.Person
 import com.huoergai.muse.network.Api
+import com.huoergai.muse.persistence.entity.Person
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

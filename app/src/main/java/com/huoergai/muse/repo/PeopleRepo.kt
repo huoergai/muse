@@ -1,9 +1,9 @@
 package com.huoergai.muse.repo
 
 import androidx.annotation.WorkerThread
-import com.huoergai.muse.model.network.PeopleResponse
-import com.huoergai.muse.model.network.PersonDetail
 import com.huoergai.muse.network.dola.ApiResponse
+import com.huoergai.muse.network.model.network.PeopleResponse
+import com.huoergai.muse.network.model.network.PersonDetail
 import com.huoergai.muse.network.service.PeopleService
 
 /**

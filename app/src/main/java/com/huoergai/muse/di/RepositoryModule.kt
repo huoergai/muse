@@ -3,6 +3,8 @@ package com.huoergai.muse.di
 import com.huoergai.muse.network.service.MovieService
 import com.huoergai.muse.network.service.PeopleService
 import com.huoergai.muse.network.service.TvService
+import com.huoergai.muse.persistence.MovieDao
+import com.huoergai.muse.persistence.TvDao
 import com.huoergai.muse.repo.MovieRepo
 import com.huoergai.muse.repo.PeopleRepo
 import com.huoergai.muse.repo.TvRepo
@@ -20,13 +22,13 @@ import dagger.hilt.android.components.ViewModelComponent
 object RepositoryModule {
 
     @Provides
-    fun provideMovieRepo(movieService: MovieService): MovieRepo {
-        return MovieRepo(movieService)
+    fun provideMovieRepo(movieService: MovieService, movieDao: MovieDao): MovieRepo {
+        return MovieRepo(movieService, movieDao)
     }
 
     @Provides
-    fun provideTvRepo(tvService: TvService): TvRepo {
-        return TvRepo(tvService)
+    fun provideTvRepo(tvService: TvService, tvDao: TvDao): TvRepo {
+        return TvRepo(tvService, tvDao)
     }
 
     @Provides

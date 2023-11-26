@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.huoergai.muse.R
 import com.huoergai.muse.base.BaseRecyclerViewAdapter
-import com.huoergai.muse.model.network.Review
+import com.huoergai.muse.network.model.network.Review
 import com.huoergai.muse.ui.view.viewholder.ReviewViewHolder
 
 /**

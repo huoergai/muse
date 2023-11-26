@@ -3,12 +3,10 @@ package com.huoergai.muse.ui
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.huoergai.muse.model.MovieListType
-import com.huoergai.muse.model.TvListType
-import com.huoergai.muse.model.entity.Movie
-import com.huoergai.muse.model.entity.Tv
-import com.huoergai.muse.model.network.Person
 import com.huoergai.muse.network.dola.onSuccess
+import com.huoergai.muse.persistence.entity.Movie
+import com.huoergai.muse.persistence.entity.Person
+import com.huoergai.muse.persistence.entity.Tv
 import com.huoergai.muse.repo.MovieRepo
 import com.huoergai.muse.repo.PeopleRepo
 import com.huoergai.muse.repo.TvRepo
@@ -48,7 +46,7 @@ class MainViewModel @Inject constructor(
 
     fun loadMovies() {
         viewModelScope.launch {
-            movieRepo.loadMovies(MovieListType.Popular).onSuccess {
+            movieRepo.loadMovies(1).onSuccess {
                 val movies = this.data.results
                 Timber.tag("MainViewModel").d("movies ${movies.size}")
                 _movieList.value = movies
@@ -58,11 +56,11 @@ class MainViewModel @Inject constructor(
 
     fun loadTvs() {
         viewModelScope.launch {
-            tvRepo.loadTvs(TvListType.POPULAR).onSuccess {
-                val movies = this.data.results
-                Timber.tag("MainViewModel").d("TVs ${movies.size}")
-                _tvList.value = movies
-            }
+//            tvRepo.loadTvs(TvListType.POPULAR, 1).onSuccess {
+//                val movies = this.data.results
+//                Timber.tag("MainViewModel").d("TVs ${movies.size}")
+//                _tvList.value = movies
+//            }
         }
     }
 

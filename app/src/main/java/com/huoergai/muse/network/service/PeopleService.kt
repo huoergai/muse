@@ -1,8 +1,8 @@
 package com.huoergai.muse.network.service
 
-import com.huoergai.muse.model.network.PeopleResponse
-import com.huoergai.muse.model.network.PersonDetail
 import com.huoergai.muse.network.dola.ApiResponse
+import com.huoergai.muse.network.model.network.PeopleResponse
+import com.huoergai.muse.network.model.network.PersonDetail
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
