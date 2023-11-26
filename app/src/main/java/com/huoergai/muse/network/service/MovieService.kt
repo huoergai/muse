@@ -26,12 +26,12 @@ interface MovieService {
     ): ApiResponse<MoviesResponse>
 
     @GET("movie/{movie_id}/videos")
-    suspend fun fetchVideos(@Path("movie_id") movieID: Int): ApiResponse<VideosResponse>
+    suspend fun fetchVideos(@Path("movie_id") movieID: Long): ApiResponse<VideosResponse>
 
     @GET("movie/{movie_id}/keywords")
-    suspend fun loadKeywords(@Path("movie_id") movieID: Int): ApiResponse<MovieKeywordsResponse>
+    suspend fun fetchKeywords(@Path("movie_id") movieID: Long): ApiResponse<MovieKeywordsResponse>
 
     @GET("movie/{movie_id}/reviews")
-    suspend fun fetchReviews(@Path("movie_id") movieID: Int): ApiResponse<ReviewResponse>
+    suspend fun fetchReviews(@Path("movie_id") movieID: Long): ApiResponse<ReviewResponse>
 
 }

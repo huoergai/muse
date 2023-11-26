@@ -16,11 +16,14 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg movies: Movie)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(movies: List<Movie>)
+
     @Update
     suspend fun update(movie: Movie)
 
     @Query("SELECT * FROM movie WHERE id = :id_")
-    suspend fun getMovie(id_: Int): Movie
+    suspend fun getMovie(id_: Long): Movie?
 
     @Query("SELECT * FROM movie WHERE page = :page_")
     suspend fun getMovies(page_: Int = 1): List<Movie>

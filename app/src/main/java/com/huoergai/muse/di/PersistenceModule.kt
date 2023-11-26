@@ -24,7 +24,7 @@ object PersistenceModule {
     @Provides
     fun provideDataBase(@ApplicationContext appContext: Context): MuseDB {
         return Room.databaseBuilder(appContext, MuseDB::class.java, "Muse.db")
-            .allowMainThreadQueries()
+            // .allowMainThreadQueries()
             .build()
     }
 

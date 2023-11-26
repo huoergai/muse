@@ -39,7 +39,7 @@ class MovieDetailViewModel @Inject constructor(
     private val _keywords = MutableStateFlow<List<Keyword>>(emptyList())
     val keywords: StateFlow<List<Keyword>> = _keywords
 
-    fun loadData(movieID: Int) {
+    fun loadData(movieID: Long) {
         viewModelScope.launch {
             val defer = listOf(
                 async {

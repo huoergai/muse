@@ -34,7 +34,7 @@ object Api {
         return url
     }
 
-    fun buildBackdropUrl(backdropPath: String): String {
+    fun buildBackdropUrl(backdropPath: String?): String {
         val url = "${IMAGE_BASE_URL}w780${backdropPath}"
         return url
     }
