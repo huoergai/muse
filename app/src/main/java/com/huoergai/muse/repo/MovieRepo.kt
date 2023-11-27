@@ -25,16 +25,17 @@ class MovieRepo(
     suspend fun loadMovies(page: Int): ApiResponse<MoviesResponse> {
         val movies = movieDao.getMovies(page)
         if (movies.isNotEmpty()) {
-            Timber.tag("TEST").d("load from DB")
+            Timber.tag("TEST").d("loadMovies from DB")
             return ApiResponse.from { Response.success(MoviesResponse(page, movies, null, null)) }
         }
 
-        Timber.tag("TEST").d("load from NET")
+        Timber.tag("TEST").d("loadMovies from NET")
         val moviesResponse = movieService.loadMovies(page)
         moviesResponse.suspendOnSuccess {
             val newMovies = this.data.results
             if (newMovies.isNotEmpty()) {
                 newMovies.forEach { it.page = page }
+                Timber.tag("TEST").d("save newMovies to DB")
                 movieDao.insertAll(newMovies)
             }
         }
@@ -46,20 +47,24 @@ class MovieRepo(
     suspend fun loadVideos(movieID: Long): ApiResponse<VideosResponse> {
         val movie = movieDao.getMovie(movieID)
         val videos = movie?.videos
-        if (movie == null || videos.isNullOrEmpty()) {
+        if (videos.isNullOrEmpty()) {
+            Timber.tag("TEST").d("loadVideos from NET")
             val videoResponse = movieService.fetchVideos(movieID)
-            videoResponse.suspendOnSuccess {
-                val newVideos = this.data.results
-                if (newVideos.isNotEmpty()) {
-                    movie?.let {
+            movie?.let {
+                videoResponse.suspendOnSuccess {
+                    val newVideos = this.data.results
+                    if (newVideos.isNotEmpty()) {
                         it.videos = newVideos
+                        Timber.tag("TEST").d("save newVideos to DB")
                         movieDao.update(it)
                     }
                 }
             }
+
             return videoResponse
         }
 
+        Timber.tag("TEST").d("loadVideos from DB")
         return ApiResponse.from { Response.success(VideosResponse(movieID, videos)) }
     }
 
@@ -67,20 +72,29 @@ class MovieRepo(
     suspend fun loadKeywords(movieID: Long): ApiResponse<MovieKeywordsResponse> {
         val movie = movieDao.getMovie(movieID)
         val keywords = movie?.keywords
-        if (movie == null || keywords.isNullOrEmpty()) {
+        if (keywords.isNullOrEmpty()) {
+            Timber.tag("TEST").d("loadKeywords from NET")
             val keywordsResponse = movieService.fetchKeywords(movieID)
-            keywordsResponse.suspendOnSuccess {
-                val newKeywords = this.data.keywords
-                if (newKeywords.isNotEmpty()) {
-                    movie?.let {
+            movie?.let {
+                keywordsResponse.suspendOnSuccess {
+                    val newKeywords = this.data.keywords
+                    if (newKeywords.isNotEmpty()) {
                         it.keywords = newKeywords
-                        movieDao.update(it)
+                        Timber.tag("TEST").d("save keywords to DB")
+                        try {
+                            movieDao.update(it)
+                        } catch (e: Exception) {
+                            Timber.tag("TEST").e("update keywords failed:${it}")
+                            e.printStackTrace()
+                        }
                     }
                 }
             }
+
             return keywordsResponse
         }
 
+        Timber.tag("TEST").d("loadKeywords from DB")
         return ApiResponse.from { Response.success(MovieKeywordsResponse(movieID, keywords)) }
     }
 
@@ -88,20 +102,28 @@ class MovieRepo(
     suspend fun loadReviews(movieID: Long): ApiResponse<ReviewResponse> {
         val movie = movieDao.getMovie(movieID)
         val reviews = movie?.reviews
-        if (movie == null || reviews.isNullOrEmpty()) {
+        if (reviews.isNullOrEmpty()) {
+            Timber.tag("TEST").d("loadReviews from NET")
             val reviewResponse = movieService.fetchReviews(movieID)
-            reviewResponse.suspendOnSuccess {
-                val newReviews = this.data.results
-                if (newReviews.isNotEmpty()) {
-                    movie?.let {
+            movie?.let {
+                reviewResponse.suspendOnSuccess {
+                    val newReviews = this.data.results
+                    if (newReviews.isNotEmpty()) {
                         it.reviews = newReviews
-                        movieDao.update(it)
+                        Timber.tag("TEST").d("save reviews to DB")
+                        try {
+                            movieDao.update(it)
+                        } catch (e: Exception) {
+                            Timber.tag("TEST").e("update review failed:${it}")
+                            e.printStackTrace()
+                        }
                     }
                 }
             }
             return reviewResponse
         }
 
+        Timber.tag("TEST").d("loadReviews from DB")
         return ApiResponse.from {
             Response.success(
                 ReviewResponse(movieID, movie.page ?: 1, reviews, 0, 0)

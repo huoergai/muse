@@ -14,7 +14,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -48,7 +47,7 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             movieRepo.loadMovies(1).onSuccess {
                 val movies = this.data.results
-                Timber.tag("MainViewModel").d("movies ${movies.size}")
+                // Timber.tag("MainViewModel").d("movies ${movies.size}")
                 _movieList.value = movies
             }
         }
@@ -68,7 +67,7 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             peopleRepo.loadPopularPeople().onSuccess {
                 val people = this.data.results
-                Timber.tag("MainViewModel").d("People ${people.size}")
+                // Timber.tag("MainViewModel").d("People ${people.size}")
                 _people.value = people
             }
         }
