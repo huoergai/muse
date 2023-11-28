@@ -5,8 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Reviewer(
-    val avatar_path: String?,
     val name: String,
-    val rating: Int,
-    val username: String
+    val username: String,
+    val rating: Int?,
+    val avatar_path: String?,
 ) : Parcelable

@@ -46,8 +46,8 @@ class PersonDetailActivity : BaseActivity() {
 
         lifecycleScope.launch {
             vm.personDetail.collect { p ->
-                p?.let {
-                    binding.ivAvatar.load(Api.buildProfileUrl(it.profile_path)) {
+                p?.profile_path?.let {
+                    binding.ivAvatar.load(Api.buildProfileUrl(it)) {
                         transformations(CircleCropTransformation())
                     }
                 }

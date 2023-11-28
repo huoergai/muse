@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.huoergai.muse.persistence.MovieDao
 import com.huoergai.muse.persistence.MuseDB
+import com.huoergai.muse.persistence.PersonDao
 import com.huoergai.muse.persistence.TvDao
 import dagger.Module
 import dagger.Provides
@@ -40,4 +41,9 @@ object PersistenceModule {
         return museDB.tvDao()
     }
 
+    @Singleton
+    @Provides
+    fun providePersonDao(museDB: MuseDB): PersonDao {
+        return museDB.personDao()
+    }
 }

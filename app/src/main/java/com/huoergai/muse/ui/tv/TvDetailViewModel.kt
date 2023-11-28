@@ -38,7 +38,7 @@ class TvDetailViewModel @Inject constructor(
     private val _tvReviews = MutableStateFlow<List<Review>>(emptyList())
     val tvReview: StateFlow<List<Review>> = _tvReviews
 
-    fun loadData(tvID: Int) {
+    fun loadData(tvID: Long) {
         viewModelScope.launch {
             val defer = listOf(
                 async {

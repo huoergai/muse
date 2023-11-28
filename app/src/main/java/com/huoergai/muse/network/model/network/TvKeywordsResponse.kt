@@ -5,6 +5,6 @@ package com.huoergai.muse.network.model.network
  * DES:
  */
 data class TvKeywordsResponse(
-    val id: Int,
+    val id: Long,
     val results: List<Keyword>
 )

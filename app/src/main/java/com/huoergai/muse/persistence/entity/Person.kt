@@ -1,16 +1,20 @@
 package com.huoergai.muse.persistence.entity
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.huoergai.muse.network.model.network.KnownFor
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+@Entity("person")
 data class Person(
-    val id: Int,
+    @PrimaryKey val id: Int,
     var page: Int,
     val name: String,
-    val profile_path: String,
+    val profile_path: String?,
     val known_for: List<KnownFor>,
-    val known_for_department: String,
-    val popularity: Double
+    var biography: String?,
+    var birthday: String?,
+    var place_of_birth: String?,
 ) : Parcelable

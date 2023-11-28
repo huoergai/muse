@@ -55,8 +55,10 @@ class MovieDetailActivity : BaseActivity() {
 
             movieVM.loadData(it.id)
 
-            val posterUrl = Api.buildBackdropUrl(it.backdrop_path)
-            binding.ivPoster.load(posterUrl) { crossfade(true) }
+            if (it.backdrop_path != null) {
+                val posterUrl = Api.buildBackdropUrl(it.backdrop_path)
+                binding.ivPoster.load(posterUrl) { crossfade(true) }
+            }
 
             binding.mtvTitle.text = it.title
             binding.mtvReleaseDate.text = getString(R.string.release_date_holder, it.release_date)

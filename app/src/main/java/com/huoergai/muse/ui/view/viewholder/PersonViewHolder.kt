@@ -20,8 +20,8 @@ class PersonViewHolder(view: View) : BaseViewHolder(view) {
 
     fun bind(person: Person) {
         mtvName.text = person.name
-        ivAvatar.load(Api.buildProfileUrl(person.profile_path)) {
-            transformations(CircleCropTransformation())
+        person.profile_path?.let {
+            ivAvatar.load(Api.buildProfileUrl(it)) { transformations(CircleCropTransformation()) }
         }
     }
 

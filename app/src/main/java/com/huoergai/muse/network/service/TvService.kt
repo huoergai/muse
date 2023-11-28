@@ -22,12 +22,12 @@ interface TvService {
     ): ApiResponse<TvResponse>
 
     @GET("tv/{series_id}/videos")
-    suspend fun getVideos(@Path("series_id") tvID: Int): ApiResponse<VideosResponse>
+    suspend fun getVideos(@Path("series_id") tvID: Long): ApiResponse<VideosResponse>
 
     @GET("tv/{series_id}/keywords")
-    suspend fun getKeywords(@Path("series_id") tvID: Int): ApiResponse<TvKeywordsResponse>
+    suspend fun getKeywords(@Path("series_id") tvID: Long): ApiResponse<TvKeywordsResponse>
 
     @GET("tv/{series_id}/reviews")
-    suspend fun getReView(@Path("series_id") tvID: Int): ApiResponse<ReviewResponse>
+    suspend fun getReView(@Path("series_id") tvID: Long): ApiResponse<ReviewResponse>
 
 }

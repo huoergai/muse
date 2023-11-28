@@ -55,17 +55,17 @@ class MainViewModel @Inject constructor(
 
     fun loadTvs() {
         viewModelScope.launch {
-//            tvRepo.loadTvs(TvListType.POPULAR, 1).onSuccess {
-//                val movies = this.data.results
-//                Timber.tag("MainViewModel").d("TVs ${movies.size}")
-//                _tvList.value = movies
-//            }
+            tvRepo.loadTvs(1).onSuccess {
+                val movies = this.data.results
+                // Timber.tag("MainViewModel").d("TVs ${movies.size}")
+                _tvList.value = movies
+            }
         }
     }
 
     fun loadPeople() {
         viewModelScope.launch {
-            peopleRepo.loadPopularPeople().onSuccess {
+            peopleRepo.loadPeople(1).onSuccess {
                 val people = this.data.results
                 // Timber.tag("MainViewModel").d("People ${people.size}")
                 _people.value = people

@@ -26,7 +26,7 @@ class ReviewViewHolder(itemView: View) : BaseViewHolder(itemView) {
     fun bind(review: Review) {
         mtvName.text = review.author
         mtvDate.text = review.created_at.substring(0, 10)
-        ratingBar.rating = review.author_details.rating / 2f
+        ratingBar.rating = review.author_details.rating?.div(2f) ?: 0f
         expandableReview.text = review.content
 
         val avatarPath = review.author_details.avatar_path

@@ -56,7 +56,10 @@ class TvDetailActivity : BaseActivity() {
 
             tvVM.loadData(it.id)
 
-            binding.sivPoster.load(Api.buildBackdropUrl(it.backdrop_path))
+            if (it.backdrop_path != null) {
+                binding.sivPoster.load(Api.buildBackdropUrl(it.backdrop_path))
+            }
+
             binding.mtvTitle.text = it.name
             binding.mtvReleaseDate.text = getString(R.string.first_air_date, it.first_air_date)
             binding.ratingBar.rating = it.vote_average / 2f

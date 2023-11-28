@@ -4,6 +4,7 @@ import com.huoergai.muse.network.service.MovieService
 import com.huoergai.muse.network.service.PeopleService
 import com.huoergai.muse.network.service.TvService
 import com.huoergai.muse.persistence.MovieDao
+import com.huoergai.muse.persistence.PersonDao
 import com.huoergai.muse.persistence.TvDao
 import com.huoergai.muse.repo.MovieRepo
 import com.huoergai.muse.repo.PeopleRepo
@@ -32,8 +33,8 @@ object RepositoryModule {
     }
 
     @Provides
-    fun providePeopleRepo(peopleService: PeopleService): PeopleRepo {
-        return PeopleRepo(peopleService)
+    fun providePeopleRepo(peopleService: PeopleService, personDao: PersonDao): PeopleRepo {
+        return PeopleRepo(peopleService, personDao)
     }
 
 }

@@ -20,7 +20,7 @@ data class Movie(
     val release_date: String,
     val vote_average: Float,
     val vote_count: Int,
-    val popularity: Double,
+    val popularity: Float,
     var videos: List<Video>?,
     var keywords: List<Keyword>?,
     var reviews: List<Review>?

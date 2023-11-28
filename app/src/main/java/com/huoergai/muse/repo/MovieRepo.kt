@@ -26,7 +26,7 @@ class MovieRepo(
         val movies = movieDao.getMovies(page)
         if (movies.isNotEmpty()) {
             Timber.tag("TEST").d("loadMovies from DB")
-            return ApiResponse.from { Response.success(MoviesResponse(page, movies, null, null)) }
+            return ApiResponse.from { Response.success(MoviesResponse(page, movies, null)) }
         }
 
         Timber.tag("TEST").d("loadMovies from NET")
@@ -56,7 +56,12 @@ class MovieRepo(
                     if (newVideos.isNotEmpty()) {
                         it.videos = newVideos
                         Timber.tag("TEST").d("save newVideos to DB")
-                        movieDao.update(it)
+                        try {
+                            movieDao.update(it)
+                        } catch (e: Exception) {
+                            Timber.tag("TEST").e("update video failed:${it}")
+                            e.printStackTrace()
+                        }
                     }
                 }
             }
@@ -124,11 +129,7 @@ class MovieRepo(
         }
 
         Timber.tag("TEST").d("loadReviews from DB")
-        return ApiResponse.from {
-            Response.success(
-                ReviewResponse(movieID, movie.page ?: 1, reviews, 0, 0)
-            )
-        }
+        return ApiResponse.from { Response.success(ReviewResponse(movieID, reviews, 0)) }
     }
 
 }
