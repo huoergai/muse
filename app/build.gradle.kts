@@ -91,8 +91,8 @@ dependencies {
 
     // hilt
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
-    implementation("com.google.dagger:hilt-android:2.48.1")
-    ksp("com.google.dagger:hilt-android-compiler:2.48.1")
+    implementation("com.google.dagger:hilt-android:2.49")
+    ksp("com.google.dagger:hilt-android-compiler:2.49")
 
     // log
     implementation("com.jakewharton.timber:timber:5.0.1")
@@ -103,8 +103,10 @@ dependencies {
     // coil
     implementation("io.coil-kt:coil:2.5.0")
 
-    // network
+    // gson
     implementation("com.google.code.gson:gson:2.10.1")
+
+    // network
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
